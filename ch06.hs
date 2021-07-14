@@ -66,4 +66,21 @@ halve xs = splitAt n xs
 msort :: Ord a => [a] -> [a]
 msort []  = []
 msort [x] = [x]
-msort xs  = uncurry merge $ fmap msort $ halve xs
+msort xs  = merge (msort $ fst ys) (msort $ snd ys)
+    where ys = halve xs
+
+-- 9
+--a
+sum' :: Num a => [a] -> a
+sum' []     = 0
+sum' (x:xs) = x + sum' xs
+
+--b
+take' :: Int -> [a] -> [a]
+take' 0 _      = []
+take' n (x:xs) = x : take' (n-1) xs
+
+--c
+last' :: [a] -> a
+last' [x]    = x
+last' (x:xs) = last' xs
